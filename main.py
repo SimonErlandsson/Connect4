@@ -24,8 +24,10 @@ def is_finished(board):
         return True, "It's a draw!", WHITE
     elif winner != 0:
         if winner == -1:
+            print("You won!")
             return True, "You won!", GREEN
         else:
+            print("You lost!")
             return True, "You lost...!", RED
     return False, "", WHITE
 
@@ -55,9 +57,10 @@ def game_loop(screen):
                 # do player move
                 if is_player_move and not game_ended:
                     action = pygame.mouse.get_pos()[0] // 100
-                    board = connect_ai.apply_action(board, action, -1)
-                    game_ended, info_text, text_color = is_finished(board)
-                    is_player_move = False
+                    if action in connect_ai.get_available_actions(board):
+                        board = connect_ai.apply_action(board, action, -1)
+                        game_ended, info_text, text_color = is_finished(board)
+                        is_player_move = False
 
                 # reset for new game
                 if game_ended:

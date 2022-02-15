@@ -9,10 +9,7 @@ import sys
 
 
 def get_available_actions(state):
-    available = []
-    for i in range(len(state[0])):
-        if (state[0][i] == 0):
-            available.append(i)
+    available = [i for i in range(len(state[0])) if state[0][i] == 0]
     random.shuffle(available)
     return available
 
@@ -53,15 +50,7 @@ def evaluate_chunk(chunk, player):
 
 
 def is_anyone_winning(state):
-    rows = len(state)
-    cols = len(state[0])
-    for row in range(rows):
-        for col in range(cols):
-            pos = (row, col)
-            for chunk in get_chunks(state, pos, 4):
-                if chunk.count(1) == 4 or chunk.count(-1) == 4:
-                    return True
-    return False
+    return True if get_who_is_winning(state) != 0 else False
 
 
 def get_who_is_winning(state):
