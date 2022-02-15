@@ -1,4 +1,4 @@
-# Connect4
+# Connect 4
 A Connect Four (Four in a row) graphical interface with AI. The game is playable by running main.py, using "python main.py".
 
 <img src="connect.png" width="200">
